@@ -116,7 +116,7 @@ namespace ToDoWebApi.Controllers
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult<ToDoItem>> AddToDo([FromBody] ToDoItem item)
         {
             try

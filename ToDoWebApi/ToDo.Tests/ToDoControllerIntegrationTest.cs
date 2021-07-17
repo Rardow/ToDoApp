@@ -125,7 +125,7 @@ namespace ToDo.Tests
             var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             //act
-            var response = await client.PostAsync("/ToDo/AddToDo", httpContent);
+            var response = await client.PutAsync("/ToDo/AddToDo", httpContent);
 
             //assert
             response.EnsureSuccessStatusCode();

@@ -1,0 +1,15 @@
+.header{
+    height: 75px;
+    background: var(--base-blue);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: var(--base-box-shadow);
+}
+
+.header h2{
+    color: white;
+    font-weight: 400;
+}

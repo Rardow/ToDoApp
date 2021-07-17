@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root{
+    --border-radius: 7px;
+    --base-box-shadow: -3.2px -3.2px 20px 0 rgb(255 255 255 / 39%), 7px 7px 20px 0 rgb(0 0 0 / 12%);
+    --base-blue: #2980b9;
+}
+
+.custom-card{
+    margin: 5px;
+    padding: 2.5px;
+}

@@ -1,0 +1,55 @@
+<div class="row justify-content-center" style="align-items: center; margin-bottom: 20px; margin-top: 20px;">
+    <div class="search-input-container">
+        <input class="search-input" type="text" [(ngModel)]="searchText" (keyup)="search()" placeholder="Search..." />
+        <span class="material-icons" style="cursor: pointer;" (click)="searchToDos()">
+            search
+        </span>
+    </div>
+    <div class="todo-main-state-switch-container" style="margin-top: 5px; margin-bottom: 5px">
+        <div class="todo-main-state-selector" [ngStyle]="{ 'left': isCompletedFilter === undefined ? '0%' : (isCompletedFilter ? '66.667%' : '33.332%') }"></div>
+        <p class="todo-main-state-switch-item" (click)="changeIsCompletedFilter(undefined)" [ngStyle]="{ 'color': isCompletedFilter === undefined ? 'white' : 'black' }">All</p>
+        <p class="todo-main-state-switch-item" (click)="changeIsCompletedFilter(false)" [ngStyle]="{ 'color': isCompletedFilter == false ? 'white' : 'black' }">To-do</p>
+        <p class="todo-main-state-switch-item" (click)="changeIsCompletedFilter(true)" [ngStyle]="{ 'color': isCompletedFilter == true ? 'white' : 'black' }">Done</p>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="new-button" (click)="addToDo()" *ngIf="!newToDo">
+        <span class="material-icons">
+            add
+        </span>
+    </div>
+    <div class="new-button" (click)="removeNewToDo()" *ngIf="newToDo">
+        <span class="material-icons">
+            close
+        </span>
+    </div>
+</div>
+<div class="col-12" *ngIf="newToDo">
+    <div class="row justify-content-center">
+        <app-todo-item [toDoItem]="newToDo" [isNew]="true" (saveToDoItemEvent)="saveToDoItem($event)" style="max-width: 324px;"></app-todo-item>
+    </div>    
+</div>
+<div class="col-12" *ngIf="toDos">
+    <div class="row justify-content-center" *ngFor="let todo of toDos.items">
+        <app-todo-item [toDoItem]="todo" (removeToDoItemEvent)="removeToDoItem($event)" (saveToDoItemEvent)="saveToDoItem($event)" style="max-width: 324px;"></app-todo-item>
+    </div>    
+    <div class="justify-content-center" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
+        <span class="material-icons" style="cursor: pointer; margin-right: 5px;" *ngIf="toDos.currentPage > 1" (click)="prevPage()">
+            navigate_before
+        </span>
+        <span style="font-size: large;">
+            {{ toDos.currentPage }} of {{ toDos.pageCount }}
+        </span>
+        <span class="material-icons" style="cursor: pointer; margin-left: 5px;" *ngIf="toDos.currentPage < toDos.pageCount" (click)="nextPage()">
+            navigate_next
+        </span>
+    </div>
+    <div class="row justify-content-center" style="align-items: center; margin-bottom: 20px; margin-top: 20px;">
+        <div class="todo-main-state-switch-container" style="margin-top: 5px; margin-bottom: 5px">
+            <div class="todo-main-state-selector" [ngStyle]="{ 'left': pageSize == 5 ? '0%' : (pageSize == 25 ? '66.667%' : '33.332%') }"></div>
+            <p class="todo-main-state-switch-item" (click)="changePageSize(5)" [ngStyle]="{ 'color': pageSize == 5 ? 'white' : 'black' }">5 items</p>
+            <p class="todo-main-state-switch-item" (click)="changePageSize(10)" [ngStyle]="{ 'color': pageSize == 10 ? 'white' : 'black' }">10 items</p>
+            <p class="todo-main-state-switch-item" (click)="changePageSize(25)" [ngStyle]="{ 'color': pageSize == 25 ? 'white' : 'black' }">25 items</p>
+        </div>
+    </div>
+</div>

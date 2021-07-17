@@ -28,6 +28,8 @@ namespace ToDoWebApi
                 opts.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("ToDo.DAL"));
             });
 
+            services.AddCors();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -51,6 +53,8 @@ namespace ToDoWebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthorization();
 
